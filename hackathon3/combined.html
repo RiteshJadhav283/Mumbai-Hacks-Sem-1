@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenAI Inventory Interface</title>
+    <style>
+        body {
+            background-color: #F9F7F3;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-group {
+            margin: 15px 0;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            padding: 10px;
+            width: 100%;
+            max-width: 300px;
+            border: 2px solid #0FA3B1;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        .action-button {
+            background-color: #0FA3B1;
+            color: #FFFFFF;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s, transform 0.2s;
+            margin: 10px;
+        }
+
+        .action-button:hover {
+            background-color: #F7A072;
+            transform: scale(1.05);
+        }
+
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>GenAI Inventory Interface</h1>
+
+        <div class="input-group">
+            <label for="company">Company Name:</label>
+            <input type="text" id="company" placeholder="Enter company name">
+        </div>
+
+        <div class="input-group">
+            <label for="companyData">Upload Company Data (Excel, CSV):</label>
+            <input type="file" id="companyData" accept=".xls, .xlsx, .csv">
+        </div>
+
+        <button class="action-button" onclick="submitForm()">Submit Data</button>
+
+        <div class="result" id="result" style="display: none;">
+            <h2>Data Submitted</h2>
+            <p id="resultText">Your file has been uploaded successfully for training.</p>
+        </div>
+    </div>
+
+    <script>
+        function submitForm() {
+            const companyName = document.getElementById('company').value;
+            const fileInput = document.getElementById('companyData');
+            const resultDiv = document.getElementById('result');
+            const resultText = document.getElementById('resultText');
+
+            if (companyName && fileInput.files.length > 0) {
+                resultText.textContent = `Data for ${companyName} has been uploaded successfully.`;
+                resultDiv.style.display = 'block';
+
+                // Mocking an upload and redirect
+                setTimeout(() => {
+                    // Redirect to inventory predictor page
+                    window.location.href = "inventory_predictor.html"; // Change to your inventory predictor URL
+                }, 2000); // Redirect after 2 seconds
+
+                const formData = new FormData();
+                formData.append('company', companyName);
+                formData.append('companyData', fileInput.files[0]);
+
+                /*
+                fetch('/upload', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => console.error('Error:', error));
+                */
+            } else {
+                alert('Please enter a company name and select a file.');
+            }
+        }
+    </script>
+</body>
+</html>

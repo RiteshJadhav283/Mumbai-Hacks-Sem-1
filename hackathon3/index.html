@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenAI Inventory Interface</title>
+    <link rel="stylesheet" href="css/styles.css"> <!-- Link to external CSS file -->
+</head>
+<body>
+    <div class="container">
+        <h1>GenAI Inventory Interface</h1>
+
+        <div class="input-group">
+            <label for="company">Company Name:</label>
+            <input type="text" id="company" placeholder="Enter company name">
+        </div>
+
+        <div class="input-group">
+            <label for="companyData">Upload Company Data (Excel, CSV):</label>
+            <input type="file" id="companyData" accept=".xls, .xlsx, .csv">
+        </div>
+
+        <button onclick="submitForm()">Submit Data</button>
+
+        <div class="result" id="result" style="display: none;">
+            <h2>Data Submitted</h2>
+            <p id="resultText">Your file has been uploaded successfully for training.</p>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script> <!-- Link to external JavaScript file -->
+</body>
+</html>
+
+
